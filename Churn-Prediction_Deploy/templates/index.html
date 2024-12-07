@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Prediction</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Customer Churn Prediction</h1>
+        <form method="POST" action="/predict">
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" step="0.1" placeholder="Enter age" required>
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <label for="tenure">Tenure (in months):</label>
+            <input type="number" id="tenure" name="tenure" step="0.1" placeholder="Enter tenure" required>
+
+            <label for="usage_frequency">Usage Frequency:</label>
+            <input type="number" id="usage_frequency" name="usage_frequency" step="0.1" placeholder="Enter usage frequency" required>
+
+            <label for="support_calls">Support Calls:</label>
+            <input type="number" id="support_calls" name="support_calls" step="1" placeholder="Number of support calls" required>
+
+            <label for="payment_delay">Payment Delay (in days):</label>
+            <input type="number" id="payment_delay" name="payment_delay" step="0.1" placeholder="Enter payment delay" required>
+
+            <label for="total_spend">Total Spend:</label>
+            <input type="number" id="total_spend" name="total_spend" step="0.1" placeholder="Enter total spend" required>
+
+            <label for="last_interaction">Last Interaction (in days):</label>
+            <input type="number" id="last_interaction" name="last_interaction" step="0.1" placeholder="Days since last interaction" required>
+
+            <label for="subscription_contract">Subscription Contract:</label>
+            <select id="subscription_contract" name="subscription_contract" required>
+                <option value="1">1 (Premium + Quarterly)</option>
+                <option value="2">2 (Standard + Quarterly)</option>
+                <option value="3">3 (Basic + Quarterly)</option>
+                <option value="4">4 (Premium + Annual)</option>
+                <option value="5">5 (Standard + Annual)</option>
+                <option value="6">6 (Basic + Annual)</option>
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+
+        <!-- Display Prediction -->
+        {% if prediction %}
+        <div class="result">
+            <p>Prediction: {{ prediction }}</p>
+        </div>
+        {% elif error %}
+        <div class="error">
+            <p>Error: {{ error }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
